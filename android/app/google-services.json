@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "38342153548",
+    "project_id": "shubh-tours-and-travels",
+    "storage_bucket": "shubh-tours-and-travels.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38342153548:android:0a53f88b6c1bf393186be9",
+        "android_client_info": {
+          "package_name": "com.example.shubhtoursandtravels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38342153548-8tvnjiq3cm24gvhd8f5lu8lpq6eogle2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlOAnAwrSZNPHGezWAJ5kaBCYedxlj8_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38342153548-8tvnjiq3cm24gvhd8f5lu8lpq6eogle2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
