@@ -79,13 +79,53 @@ class _RequestHotelState extends State<RequestHotel> {
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text(
-                        dataFromDB[index]['Email'],
-                        style: TextStyle(
-                          color: kFontGoldColor,
-                          backgroundColor: kBackGroundMaroonColor,
-                          fontSize: mediaQuery.size.width * 0.03,
-                        ),
+                      title: Row(
+                        children: [
+                          Text(
+                            'For: ${dataFromDB[index]['Destination']}',
+                            style: TextStyle(
+                              color: kFontGoldColor,
+                              backgroundColor: kBackGroundMaroonColor,
+                              fontSize: mediaQuery.size.width * 0.03,
+                            ),
+                          ),
+                          Text(
+                            ' Guests: ${dataFromDB[index]['Adult']} Adults and ${dataFromDB[index]['Children']} Children',
+                            style: TextStyle(
+                              color: kFontGoldColor,
+                              backgroundColor: kBackGroundMaroonColor,
+                              fontSize: mediaQuery.size.width * 0.03,
+                            ),
+                          ),
+                          Text(
+                            '  On: ${dataFromDB[index]['selectedDate']}',
+                            style: TextStyle(
+                              color: kFontGoldColor,
+                              backgroundColor: kBackGroundMaroonColor,
+                              fontSize: mediaQuery.size.width * 0.03,
+                            ),
+                          ),
+                        ],
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            'Email: ${dataFromDB[index]['Email']}',
+                            style: TextStyle(
+                              color: kFontGoldColor,
+                              backgroundColor: kBackGroundMaroonColor,
+                              fontSize: mediaQuery.size.width * 0.025,
+                            ),
+                          ),
+                          Text(
+                            '   Contact Number: ${dataFromDB[index]['ContactNumber']}',
+                            style: TextStyle(
+                              color: kFontGoldColor,
+                              backgroundColor: kBackGroundMaroonColor,
+                              fontSize: mediaQuery.size.width * 0.025,
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   },

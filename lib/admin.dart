@@ -12,6 +12,11 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
+  Future<bool> adminLogOut() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.remove('email');
+    return true;
+  }
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -108,23 +113,39 @@ class _AdminPageState extends State<AdminPage> {
                 ),
               ),
             ),
+            SizedBox(
+              height: mediaQuery.size.width * 0.06,
+            ),
+            SizedBox(
+              height: mediaQuery.size.height * 0.06,
+              width: mediaQuery.size.width * 0.5,
+              child: ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.blueAccent),
+                  elevation: MaterialStatePropertyAll(30.0),
+                ),
+                onPressed: ()  {
+                  Auth().signOut();
+                  adminLogOut().then((value){
+                    if(value==true){
+                      Navigator.pushNamed(context, 'signin');
+                    }
+                  });
+                },
+                child: Text(
+                  'Log Out',
+                  style: TextStyle(
+                    fontFamily: 'MPIDeco',
+                    color: Colors.white,
+                    fontSize: mediaQuery.size.width * 0.05,
+                  ),
+                ),
+              ),
+            ),
+
           ],
         ),
       ),
     );
   }
 }
-
-// body: Center(
-//   child: Container(
-//     color: Colors.white,
-//     child: TextButton(
-//       onPressed: () async {
-//         SharedPreferences pref = await SharedPreferences.getInstance();
-//         pref.remove("email");
-//         Auth().signOut();
-//       },
-//       child: Text('Welcome Admin'),
-//     ),
-//   ),
-// ),
