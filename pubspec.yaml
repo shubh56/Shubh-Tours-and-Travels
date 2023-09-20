@@ -44,6 +44,9 @@ dependencies:
   country_code_picker: ^3.0.0
   cloud_firestore: ^4.8.4
   shared_preferences: ^2.2.0
+  firebase_storage: ^11.2.6
+  file_picker: ^5.5.0
+  syncfusion_flutter_pdfviewer: ^22.2.12
 
 dev_dependencies:
   flutter_test:

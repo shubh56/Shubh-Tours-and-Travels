@@ -74,12 +74,18 @@ class _ThreeOptionsState extends State<ThreeOptions> {
                 onPressed: () {
                   Navigator.pushNamed(context, 'tourpacks');
                 },
-                child: Text(
-                  'Tour Packages',
-                  style: TextStyle(
-                    fontFamily: 'MPIDeco',
-                    color: kFontGoldColor,
-                    fontSize: mediaQuery.size.width * 0.05,
+                child: Hero(
+                  tag: 'tourHero',
+                  child: Material(
+                    color: kBackGroundMaroonColor,
+                    child: Text(
+                      'Tour Packages',
+                      style: TextStyle(
+                        fontFamily: 'MPIDeco',
+                        color: kFontGoldColor,
+                        fontSize: mediaQuery.size.width * 0.05,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -100,12 +106,18 @@ class _ThreeOptionsState extends State<ThreeOptions> {
                 onPressed: () {
                   Navigator.pushNamed(context, 'hotels');
                 },
-                child: Text(
-                  'Hotels',
-                  style: TextStyle(
-                    fontFamily: 'MPIDeco',
-                    color: kFontGoldColor,
-                    fontSize: mediaQuery.size.width * 0.05,
+                child: Hero(
+                  tag: 'hotelHero',
+                  child: Material(
+                    color: kBackGroundMaroonColor,
+                    child: Text(
+                      'Hotels',
+                      style: TextStyle(
+                        fontFamily: 'MPIDeco',
+                        color: kFontGoldColor,
+                        fontSize: mediaQuery.size.width * 0.05,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -126,12 +138,15 @@ class _ThreeOptionsState extends State<ThreeOptions> {
                 onPressed: () {
                   Navigator.pushNamed(context, 'airtickets');
                 },
-                child: Text(
-                  'Air Tickets',
-                  style: TextStyle(
-                    fontFamily: 'MPIDeco',
-                    color: kFontGoldColor,
-                    fontSize: mediaQuery.size.width * 0.05,
+                child: Hero(
+                  tag: 'airHero',
+                  child: Text(
+                    'Air Tickets',
+                    style: TextStyle(
+                      fontFamily: 'MPIDeco',
+                      color: kFontGoldColor,
+                      fontSize: mediaQuery.size.width * 0.05,
+                    ),
                   ),
                 ),
               ),

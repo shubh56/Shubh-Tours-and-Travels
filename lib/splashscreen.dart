@@ -25,10 +25,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 5), () {
       if(email!="null"){
         if(email=='shubhtravels999@gmail.com'){
-          Navigator.pushNamed(context, 'admin');
+          Navigator.pushReplacementNamed(context, 'admin');
         }
         else {
-          Navigator.pushNamed(context, 'homepage');
+          Navigator.pushReplacementNamed(context, 'homepage');
         }
       }
       else{

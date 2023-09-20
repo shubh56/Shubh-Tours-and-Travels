@@ -13,7 +13,8 @@ import 'admin.dart';
 import 'reqAir.dart';
 import 'reqHotel.dart';
 import 'reqTour.dart';
-
+import 'custTourReq.dart';
+import 'recommendPackage.dart';
 
 void main() {
   runApp(const RoutesClass());
@@ -42,6 +43,8 @@ class RoutesClass extends StatelessWidget {
         'reqHotel': (context)=> const RequestHotel(),
         'reqAir': (context)=> const RequestAir(),
         'reqTour': (context)=> const RequestTour(),
+        'custTourReq' : (context) => const CustomerTourRequest(),
+        'recommendPackage' :  (context) => const RecommendPackage(),
       },
     );
   }

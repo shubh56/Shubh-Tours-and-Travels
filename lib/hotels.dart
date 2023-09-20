@@ -45,234 +45,250 @@ class _HotelState extends State<Hotels> {
         margin: EdgeInsets.only(
           top: mediaQuery.size.height * 0.1,
         ),
-        child: Column(
-          children: [
-            SizedBox(
-              width: mediaQuery.size.width * 0.7,
-              child: TextField(
-                controller: destination,
-                cursorColor: kFontGoldColor,
-                style: const TextStyle(
-                  color: kFontGoldColor,
-                ),
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Hero(
+                tag: 'hotelHero',
+                child: Material(
+                  color: kBackGroundMaroonColor,
+                  child: Text(
+                    'Hotel Booking',
+                    style: TextStyle(
+                      fontFamily: 'Northwell',
+                      fontSize: mediaQuery.size.height*0.05,
                       color: kFontGoldColor,
                     ),
-                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: kFontGoldColor,
-                    ),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  hintText: 'Destination',
-                  hintStyle: const TextStyle(
-                    color: kFontGoldColor,
-                  ),
-                  icon: const Icon(Icons.hotel),
-                  iconColor: kFontGoldColor,
                 ),
               ),
-            ),
-            SizedBox(
-              height: mediaQuery.size.height * 0.03,
-              width: mediaQuery.size.width * 0.04,
-            ),
-            SizedBox(
-              height: mediaQuery.size.height * 0.04,
-              width: mediaQuery.size.width * 0.7,
-              child: Row(
+              SizedBox(
+                width: mediaQuery.size.width * 0.7,
+                child: TextField(
+                  controller: destination,
+                  cursorColor: kFontGoldColor,
+                  style: const TextStyle(
+                    color: kFontGoldColor,
+                  ),
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: kFontGoldColor,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: kFontGoldColor,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    hintText: 'Destination',
+                    hintStyle: const TextStyle(
+                      color: kFontGoldColor,
+                    ),
+                    icon: const Icon(Icons.hotel),
+                    iconColor: kFontGoldColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: mediaQuery.size.height * 0.03,
+                width: mediaQuery.size.width * 0.04,
+              ),
+              SizedBox(
+                height: mediaQuery.size.height * 0.04,
+                width: mediaQuery.size.width * 0.7,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Select Dates',
+                      style: TextStyle(
+                        color: kFontGoldColor,
+                        fontFamily: 'MPIDeco',
+                        fontSize: mediaQuery.size.height*0.03,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        DateTimeRange? newDateRange = await
+                        showDateRangePicker(context: context, firstDate: DateTime(1900), lastDate: DateTime(2100),);
+                        if(newDateRange==null) return;
+                        setState(() {
+                          dateRange = newDateRange;
+                          selectedDate=  "${start.day}/${start.month}/${start.year}-${end.day}/${end.month}/${end.year}";
+                        });
+                        request['selectedDate']=selectedDate;
+                      },
+                      child: Text(
+                        '${start.day}/${start.month}/${start.year}-${end.day}/${end.month}/${end.year}',
+                        style: TextStyle(
+                          color: kFontGoldColor,
+                          fontSize: mediaQuery.size.height*0.02,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: mediaQuery.size.height * 0.03),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Select Dates',
+                    'Rating',
                     style: TextStyle(
-                      color: kFontGoldColor,
                       fontFamily: 'MPIDeco',
-                      fontSize: mediaQuery.size.height*0.03,
+                      fontSize: mediaQuery.size.height*0.02,
+                      color: kFontGoldColor,
                     ),
                   ),
-                  TextButton(
-                    onPressed: () async {
-                      DateTimeRange? newDateRange = await
-                      showDateRangePicker(context: context, firstDate: DateTime(1900), lastDate: DateTime(2100),);
-                      if(newDateRange==null) return;
-                      setState(() {
-                        dateRange = newDateRange;
-                        selectedDate=  "${start.day}/${start.month}/${start.year}-${end.day}/${end.month}/${end.year}";
-                      });
-                      request['selectedDate']=selectedDate;
+                  SizedBox(width: mediaQuery.size.width * 0.03),
+                  RatingBar.builder(
+                    initialRating: 2,
+                    minRating: 2,
+                    direction: Axis.horizontal,
+                    allowHalfRating: false,
+                    itemCount: 5,
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    onRatingUpdate: (rating) {
+                      request["Rating"]=rating.toString();
                     },
-                    child: Text(
-                      '${start.day}/${start.month}/${start.year}-${end.day}/${end.month}/${end.year}',
-                      style: TextStyle(
+                  ),
+                ],
+              ),
+              SizedBox(height: mediaQuery.size.height * 0.03),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    color: kFontGoldColor,
+                    height: mediaQuery.size.height * 0.06,
+                    child: CountryCodePicker(
+                      initialSelection: 'IN',
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      onChanged: (value){
+                        countryCode=value.toString();
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: mediaQuery.size.width * 0.03,
+                  ),
+                  SizedBox(
+                    width: mediaQuery.size.width * 0.5,
+                    child: TextField(
+                      controller: contactNumber,
+                      cursorColor: kFontGoldColor,
+                      style: const TextStyle(
                         color: kFontGoldColor,
-                        fontSize: mediaQuery.size.height*0.02,
+                      ),
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: kFontGoldColor,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: kFontGoldColor,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        hintText: 'Contact number',
+                        hintStyle: const TextStyle(
+                          color: kFontGoldColor,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: mediaQuery.size.height * 0.03),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Rating',
-                  style: TextStyle(
-                    fontFamily: 'MPIDeco',
-                    fontSize: mediaQuery.size.height*0.02,
-                    color: kFontGoldColor,
+              SizedBox(height: mediaQuery.size.height * 0.03),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'Adults',
+                        style: TextStyle(
+                            color: kFontGoldColor,
+                            fontSize: mediaQuery.size.width * 0.035),
+                      ),
+                      SizedBox(width: mediaQuery.size.width * 0.03),
+                      Container(
+                        color: Colors.white,
+                        child: Counter(
+                          min: 0,
+                          max: 9,
+                          initial: 1,
+                          onValueChanged: (value) {
+                            request["Adult"] = value.toString();
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                SizedBox(width: mediaQuery.size.width * 0.03),
-                RatingBar.builder(
-                  initialRating: 2,
-                  minRating: 2,
-                  direction: Axis.horizontal,
-                  allowHalfRating: false,
-                  itemCount: 5,
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star,
-                    color: Colors.amber,
+                  SizedBox(width: mediaQuery.size.width * 0.03),
+                  Row(
+                    children: [
+                      Text(
+                        'Child',
+                        style: TextStyle(
+                            color: kFontGoldColor,
+                            fontSize: mediaQuery.size.width * 0.035),
+                      ),
+                      SizedBox(width: mediaQuery.size.width * 0.03),
+                      Container(
+                        color: Colors.white,
+                        child: Counter(
+                          min: 0,
+                          max: 9,
+                          initial: 0,
+                          onValueChanged: (value) {
+                            request["Children"] = value.toString();
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  onRatingUpdate: (rating) {
-                    request["Rating"]=rating.toString();
-                  },
-                ),
-              ],
-            ),
-            SizedBox(height: mediaQuery.size.height * 0.03),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  color: kFontGoldColor,
-                  height: mediaQuery.size.height * 0.06,
-                  child: CountryCodePicker(
-                    initialSelection: 'IN',
-                    textStyle: const TextStyle(
-                      color: Colors.white,
+                ],
+              ),
+              SizedBox(height: mediaQuery.size.height * 0.03),
+              SizedBox(
+                  width: mediaQuery.size.width * 0.7,
+                  child: TextButton(
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Colors.blue),
                     ),
-                    onChanged: (value){
-                      countryCode=value.toString();
+                    onPressed: () {
+                      request["Destination"]= destination.text.toString();;
+                      request["ContactNumber"]='$countryCode ${contactNumber.text.toString()}';
+                      FirebaseFirestore db = FirebaseFirestore.instance;
+                      FirebaseAuth auth = FirebaseAuth.instance;
+                      final String? userEmail=auth.currentUser?.email.toString();
+                      request["Email"]= userEmail!;
+                      DateTime uniqueId = DateTime.timestamp();
+                      String docName = '$userEmail $uniqueId';
+                      db.collection('HotelRequest').doc(docName).set(request);
                     },
-                  ),
-                ),
-                SizedBox(
-                  width: mediaQuery.size.width * 0.03,
-                ),
-                SizedBox(
-                  width: mediaQuery.size.width * 0.5,
-                  child: TextField(
-                    controller: contactNumber,
-                    cursorColor: kFontGoldColor,
-                    style: const TextStyle(
-                      color: kFontGoldColor,
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: kFontGoldColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: kFontGoldColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      hintText: 'Contact number',
-                      hintStyle: const TextStyle(
-                        color: kFontGoldColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: mediaQuery.size.height * 0.03),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      'Adults',
+                    child: const Text(
+                      'Submit Request',
                       style: TextStyle(
-                          color: kFontGoldColor,
-                          fontSize: mediaQuery.size.width * 0.035),
-                    ),
-                    SizedBox(width: mediaQuery.size.width * 0.03),
-                    Container(
-                      color: Colors.white,
-                      child: Counter(
-                        min: 0,
-                        max: 9,
-                        initial: 1,
-                        onValueChanged: (value) {
-                          request["Adult"] = value.toString();
-                        },
+                        color: Colors.white,
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(width: mediaQuery.size.width * 0.03),
-                Row(
-                  children: [
-                    Text(
-                      'Child',
-                      style: TextStyle(
-                          color: kFontGoldColor,
-                          fontSize: mediaQuery.size.width * 0.035),
-                    ),
-                    SizedBox(width: mediaQuery.size.width * 0.03),
-                    Container(
-                      color: Colors.white,
-                      child: Counter(
-                        min: 0,
-                        max: 9,
-                        initial: 0,
-                        onValueChanged: (value) {
-                          request["Children"] = value.toString();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: mediaQuery.size.height * 0.03),
-            SizedBox(
-                width: mediaQuery.size.width * 0.7,
-                child: TextButton(
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                  ),
-                  onPressed: () {
-                    request["Destination"]= destination.text.toString();;
-                    request["ContactNumber"]='$countryCode ${contactNumber.text.toString()}';
-                    FirebaseFirestore db = FirebaseFirestore.instance;
-                    FirebaseAuth auth = FirebaseAuth.instance;
-                    final String? userEmail=auth.currentUser?.email.toString();
-                    request["Email"]= userEmail!;
-                    DateTime uniqueId = DateTime.timestamp();
-                    String docName = '$userEmail $uniqueId';
-                    db.collection('HotelRequest').doc(docName).set(request);
-                  },
-                  child: const Text(
-                    'Submit Request',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                )),
-          ],
+                  )),
+            ],
+          ),
         ),
       ),
     );

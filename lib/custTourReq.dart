@@ -4,14 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'constants.dart';
 
-class RequestHotel extends StatefulWidget {
-  const RequestHotel({super.key});
+class CustomerTourRequest extends StatefulWidget {
+  const CustomerTourRequest({super.key});
 
   @override
-  State<RequestHotel> createState() => _RequestHotelState();
+  State<CustomerTourRequest> createState() => _CustomerTourRequestState();
 }
 
-class _RequestHotelState extends State<RequestHotel> {
+class _CustomerTourRequestState extends State<CustomerTourRequest> {
   CollectionReference collectionRef =
   FirebaseFirestore.instance.collection('TourRequest');
   List dataFromDB = [];

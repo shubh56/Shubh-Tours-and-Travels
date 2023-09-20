@@ -49,7 +49,7 @@ class _AdminPageState extends State<AdminPage> {
                   elevation: MaterialStatePropertyAll(30.0),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, 'reqTour');
+                  Navigator.pushNamed(context, 'custTourReq');
                 },
                 child: Text(
                   'Tour Packages',
@@ -128,7 +128,7 @@ class _AdminPageState extends State<AdminPage> {
                   Auth().signOut();
                   adminLogOut().then((value){
                     if(value==true){
-                      Navigator.pushNamed(context, 'signin');
+                      Navigator.pushReplacementNamed(context, 'signin');
                     }
                   });
                 },
