@@ -273,15 +273,15 @@ class _TourPackagesState extends State<TourPackages> {
                       backgroundColor: MaterialStatePropertyAll(Colors.blue),
                     ),
                     onPressed: () {
-                      // request["Destination"]= destination.text.toString();;
-                      // request["ContactNumber"]='$countryCode ${contactNumber.text.toString()}';
-                      // FirebaseFirestore db = FirebaseFirestore.instance;
-                      // FirebaseAuth auth = FirebaseAuth.instance;
-                      // final String? userEmail=auth.currentUser?.email.toString();
-                      // request["Email"]= userEmail!;
-                      // DateTime uniqueId = DateTime.timestamp();
-                      // String docName = '$userEmail $uniqueId';
-                      // db.collection('TourRequest').doc(docName).set(request);
+                      request["Destination"]= destination.text.toString();;
+                      request["ContactNumber"]='$countryCode ${contactNumber.text.toString()}';
+                      FirebaseFirestore db = FirebaseFirestore.instance;
+                      FirebaseAuth auth = FirebaseAuth.instance;
+                      final String? userEmail=auth.currentUser?.email.toString();
+                      request["Email"]= userEmail!;
+                      DateTime uniqueId = DateTime.timestamp();
+                      String docName = '$userEmail $uniqueId';
+                      db.collection('TourRequest').doc(docName).set(request);
                       Navigator.pushNamed(context,'recommendPackage',arguments: {'destination':destination.text.toString()} );
                     },
                     child: const Text(
