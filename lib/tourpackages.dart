@@ -282,9 +282,7 @@ class _TourPackagesState extends State<TourPackages> {
                       // DateTime uniqueId = DateTime.timestamp();
                       // String docName = '$userEmail $uniqueId';
                       // db.collection('TourRequest').doc(docName).set(request);
-                      Navigator.pushNamed(context,'recommendPackage',arguments: <String,String>{
-                        'destination': destination.text.toString(),
-                      } );
+                      Navigator.pushNamed(context,'recommendPackage',arguments: {'destination':destination.text.toString()} );
                     },
                     child: const Text(
                       'Submit Request',

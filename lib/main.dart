@@ -44,7 +44,7 @@ class RoutesClass extends StatelessWidget {
         'reqAir': (context)=> const RequestAir(),
         'reqTour': (context)=> const RequestTour(),
         'custTourReq' : (context) => const CustomerTourRequest(),
-        'recommendPackage' :  (context) => const RecommendPackage(),
+        'recommendPackage' :  (context) =>  RecommendPackage(ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>),
       },
     );
   }

@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState(){
     getUserState();
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 8), () {
       if(email!="null"){
         if(email=='shubhtravels999@gmail.com'){
           Navigator.pushReplacementNamed(context, 'admin');

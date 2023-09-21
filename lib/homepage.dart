@@ -138,192 +138,194 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(
-                top: mediaQuery.size.height * 0.04,
-              ),
-              width: mediaQuery.size.height * 0.6,
-              height: mediaQuery.size.height * 0.04,
-              color: kBackGroundMaroonColor,
-              child: Center(
-                child: SizedBox(
-                  height: mediaQuery.size.height * 0.2,
-                  width: mediaQuery.size.width * 0.9,
-                  child: TextField(
-                    cursorColor: kFontGoldColor,
-                    style: const TextStyle(
-                      color: kFontGoldColor,
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: kFontGoldColor,
-                        ),
-                        borderRadius: BorderRadius.circular(
-                            mediaQuery.size.height * 0.01),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: kFontGoldColor,
-                        ),
-                        borderRadius: BorderRadius.circular(
-                            mediaQuery.size.height * 0.01),
-                      ),
-                      hintText: 'Destination',
-                      hintStyle: const TextStyle(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(
+                  top: mediaQuery.size.height * 0.04,
+                ),
+                width: mediaQuery.size.height * 0.6,
+                height: mediaQuery.size.height * 0.04,
+                color: kBackGroundMaroonColor,
+                child: Center(
+                  child: SizedBox(
+                    height: mediaQuery.size.height * 0.2,
+                    width: mediaQuery.size.width * 0.9,
+                    child: TextField(
+                      cursorColor: kFontGoldColor,
+                      style: const TextStyle(
                         color: kFontGoldColor,
                       ),
-                      icon: const Icon(Icons.search),
-                      iconColor: kFontGoldColor,
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: kFontGoldColor,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                              mediaQuery.size.height * 0.01),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: kFontGoldColor,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                              mediaQuery.size.height * 0.01),
+                        ),
+                        hintText: 'Destination',
+                        hintStyle: const TextStyle(
+                          color: kFontGoldColor,
+                        ),
+                        icon: const Icon(Icons.search),
+                        iconColor: kFontGoldColor,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: mediaQuery.size.height * 0.03),
-              child: Row(
+              Container(
+                margin: EdgeInsets.only(top: mediaQuery.size.height * 0.03),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      flex: 2,
+                      child: TextButton(
+                        style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(kBackGroundMaroonColor),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'tourpacks');
+                        },
+                        child: Text(
+                          'Tour packages',
+                          style: TextStyle(
+                            fontFamily: 'MPIDeco',
+                            color: kFontGoldColor,
+                            fontSize: mediaQuery.size.width * 0.045,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: TextButton(
+                        style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(kBackGroundMaroonColor),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'hotels');
+                        },
+                        child: Text(
+                          'Hotels',
+                          style: TextStyle(
+                            fontFamily: 'MPIDeco',
+                            fontSize: mediaQuery.size.width * 0.045,
+                            color: kFontGoldColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 2,
+                      child: TextButton(
+                        style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(kBackGroundMaroonColor),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'airtickets');
+                        },
+                        child: Text(
+                          'Air tickets',
+                          style: TextStyle(
+                            fontSize: mediaQuery.size.width * 0.045,
+                            fontFamily: 'MPIDeco',
+                            color: kFontGoldColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 40.0),
+                child: Text(
+                  'Popular Destinations',
+                  style: TextStyle(
+                    fontSize: mediaQuery.size.width * 0.055,
+                    color: Colors.white,
+                    fontFamily: 'Northwell',
+                  ),
+                ),
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Flexible(
-                    flex: 2,
-                    child: TextButton(
-                      style: const ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(kBackGroundMaroonColor),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'tourpacks');
-                      },
-                      child: Text(
-                        'Tour packages',
-                        style: TextStyle(
-                          fontFamily: 'MPIDeco',
-                          color: kFontGoldColor,
-                          fontSize: mediaQuery.size.width * 0.045,
-                        ),
-                      ),
-                    ),
+                  const DestinationCard(
+                    destination: 'Paris',
+                    imagepath: 'images/paris.jpeg',
+                    destinationText:
+                        "Eiffel's steel soars, love's city it defines, Paris, where dreams intertwine.",
                   ),
-                  Flexible(
-                    flex: 1,
-                    child: TextButton(
-                      style: const ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(kBackGroundMaroonColor),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'hotels');
-                      },
-                      child: Text(
-                        'Hotels',
-                        style: TextStyle(
-                          fontFamily: 'MPIDeco',
-                          fontSize: mediaQuery.size.width * 0.045,
-                          color: kFontGoldColor,
-                        ),
-                      ),
-                    ),
+                  SizedBox(
+                    width: mediaQuery.size.width * 0.03,
                   ),
-                  Flexible(
-                    flex: 2,
-                    child: TextButton(
-                      style: const ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(kBackGroundMaroonColor),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'airtickets');
-                      },
-                      child: Text(
-                        'Air tickets',
-                        style: TextStyle(
-                          fontSize: mediaQuery.size.width * 0.045,
-                          fontFamily: 'MPIDeco',
-                          color: kFontGoldColor,
-                        ),
-                      ),
-                    ),
+                  const DestinationCard(
+                    destination: 'Mumbai',
+                    destinationText:
+                        "Bollywood's heartbeat, a vibrant throng, in Mumbai's rhythm, dreams belong.",
+                    imagepath: 'images/mumbai.jpeg',
+                  ),
+                  SizedBox(
+                    width: mediaQuery.size.width * 0.03,
+                  ),
+                  const DestinationCard(
+                    destination: 'New York',
+                    destinationText:
+                        "Melting pot of cultures bold, New York's essence, a story untold.",
+                    imagepath: 'images/newyork.jpg',
+                  )
+                ],
+              ),
+              SizedBox(
+                height: mediaQuery.size.height * 0.03,
+                width: double.infinity,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const DestinationCard(
+                    destination: 'Amsterdam',
+                    imagepath: 'images/amsterdam.jpeg',
+                    destinationText:
+                        "Canals weave tales of old and new, Amsterdam's charm, forever true.",
+                  ),
+                  SizedBox(
+                    width: mediaQuery.size.width * 0.03,
+                  ),
+                  const DestinationCard(
+                    destination: 'London',
+                    imagepath: 'images/london.jpeg',
+                    destinationText:
+                        "Big Ben's chime marks moments grand, in London's pulse, a timeless brand.",
+                  ),
+                  SizedBox(
+                    width: mediaQuery.size.width * 0.03,
+                  ),
+                  const DestinationCard(
+                    destination: 'Barcelona',
+                    imagepath: 'images/barcelona.jpeg',
+                    destinationText:
+                        "Catalan spirit, vibrant and free, in Barcelona's soul, find harmony.",
                   ),
                 ],
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 40.0),
-              child: Text(
-                'Popular Destinations',
-                style: TextStyle(
-                  fontSize: mediaQuery.size.width * 0.055,
-                  color: Colors.white,
-                  fontFamily: 'Northwell',
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const DestinationCard(
-                  destination: 'Paris',
-                  imagepath: 'images/paris.jpeg',
-                  destinationText:
-                      "Eiffel's steel soars, love's city it defines, Paris, where dreams intertwine.",
-                ),
-                SizedBox(
-                  width: mediaQuery.size.width * 0.03,
-                ),
-                const DestinationCard(
-                  destination: 'Mumbai',
-                  destinationText:
-                      "Bollywood's heartbeat, a vibrant throng, in Mumbai's rhythm, dreams belong.",
-                  imagepath: 'images/mumbai.jpeg',
-                ),
-                SizedBox(
-                  width: mediaQuery.size.width * 0.03,
-                ),
-                const DestinationCard(
-                  destination: 'New York',
-                  destinationText:
-                      "Melting pot of cultures bold, New York's essence, a story untold.",
-                  imagepath: 'images/newyork.jpg',
-                )
-              ],
-            ),
-            SizedBox(
-              height: mediaQuery.size.height * 0.03,
-              width: double.infinity,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const DestinationCard(
-                  destination: 'Amsterdam',
-                  imagepath: 'images/amsterdam.jpeg',
-                  destinationText:
-                      "Canals weave tales of old and new, Amsterdam's charm, forever true.",
-                ),
-                SizedBox(
-                  width: mediaQuery.size.width * 0.03,
-                ),
-                const DestinationCard(
-                  destination: 'London',
-                  imagepath: 'images/london.jpeg',
-                  destinationText:
-                      "Big Ben's chime marks moments grand, in London's pulse, a timeless brand.",
-                ),
-                SizedBox(
-                  width: mediaQuery.size.width * 0.03,
-                ),
-                const DestinationCard(
-                  destination: 'Barcelona',
-                  imagepath: 'images/barcelona.jpeg',
-                  destinationText:
-                      "Catalan spirit, vibrant and free, in Barcelona's soul, find harmony.",
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
